@@ -1,0 +1,16 @@
+---
+name: CHEN3603
+category: Classes
+subcategory: Chemical Engineering
+role: batch_connect
+description: |
+  This app will launch a [Jupyter Notebook] server using [Python] on the [Notchpeak
+  cluster], notchpeak-shared-short account and partition using one CPU core for class CHEN3603.
+ 
+  [Jupyter Notebook]: https://jupyter.org/
+  [Python]: https://www.python.org/
+  [HPC cluster]: https://www.chpc.utah.edu/resources/HPC_Clusters.php
+  [GPU specification]: https://www.chpc.utah.edu/documentation/guides/gpus-accelerators.php#overview
+  [Frisco node]: https://www.chpc.utah.edu/documentation/guides/frisco-nodes.php
+  [Notchpeak cluster]: https://www.chpc.utah.edu/documentation/policies/2.1GeneralHPCClusterPolicies.php#Pol2.1.6
+

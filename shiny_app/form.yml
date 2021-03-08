@@ -1,0 +1,54 @@
+---
+title: "R Shiny app"
+attributes:
+  cluster:
+    widget: "select"
+    options:
+      - "notchpeak"
+      - "kingspeak"
+      - "lonepeak"
+      - "ash"
+      - "tangent"
+      - "frisco1"
+      - "frisco2"
+      - "frisco3"
+      - "frisco4"
+      - "frisco5"
+      - "frisco6"
+      - "frisco7"
+      - "frisco8"
+    help: |
+      Select the cluster or Frisco node to create this session on.
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    help: "Maximum number of CPU cores on notchpeak-shared-short is 32, on other partition 32 or 40."
+    min: 1
+    max: 40
+  bc_num_hours:
+    label: "Number of hours"
+    value: 1   
+    min: 1
+    max: 336
+    help: "Maximum wall time on notchpeak-shared-short is 8 hours, on notchpeak and owner-guest 72 hours, on owner nodes 14 days."
+  bc_account:
+    label: "Account"
+    value: "notchpeak-shared-short"
+  bc_queue:
+    label: "Partition"
+    value: "notchpeak-shared-short"
+  shiny_app:
+    widget: text_area
+    label: "Shiny app to run"
+    help: "Enter the path to the Shiny app you want to run. App file in this directory has to be named either app.R or server.R."
+    value: |
+        ~/R/shiny/app
+form:
+  - cluster
+  - shiny_app
+  - num_cores
+  - bc_num_hours
+  - bc_account
+  - bc_queue
+  - bc_email_on_started

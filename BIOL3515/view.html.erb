@@ -1,0 +1,46 @@
+<%-
+  base_url  = "/node/#{host}/#{port}"
+  login_url = "#{base_url}/login"
+  next_url1  = "#{base_url}/notebooks/Buffer_Titration/buffer_simulation.ipynb"
+  full_url1="#{login_url}?next=#{URI.encode(next_url1)}"
+  next_url2  = "#{base_url}/notebooks/Experiment_2/exp2_sim.ipynb"
+  full_url2="#{login_url}?next=#{URI.encode(next_url2)}"
+
+  form_id = "jupyter_form#{login_url.gsub('/', '_')}"
+%>
+
+<!-- Zoom on iPad doesn't like opening in a new tab. It won't foward the form parameters. -->
+<script type="text/javascript">
+  function changeTarget() {
+    const agent = navigator.userAgent;
+    if (/Mozilla\/5\.0 \(Macintosh; Intel Mac OS X \d+_\d+_\d+\) AppleWebKit\/\d+\.\d+\.\d+ \(KHTML, like Gecko\)/.test(agent)) {
+      document.getElementById("<%= form_id %>").target = "_self";
+    }
+  }
+</script>
+
+<form id="<%= form_id %>" action="<%= full_url1 %>" method="post" target="_blank" onsubmit="changeTarget()" >
+  <input type="hidden" name="password" value="<%= password %>">
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-cogs"></i> Connect to Buffer_Titration
+  </button>
+</form>
+
+<br>
+
+<form id="<%= form_id %>" action="<%= full_url2 %>" method="post" target="_blank" onsubmit="changeTarget()" >
+  <input type="hidden" name="password" value="<%= password %>">
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-cogs"></i> Connect to Experiment 2
+  </button>
+</form>
+
+<br>
+
+<form action="/node/<%= host %>/<%= port %>/login" method="post" target="_blank">
+  <input type="hidden" name="password" value="<%= password %>">
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-cogs"></i> Connect to Jupyter
+  </button>
+</form>
+

@@ -1,0 +1,14 @@
+<form action="/node/<%= host %>/<%= port %>/login" method="post" target="_blank">
+  <input type="hidden" name="password" value="<%= password %>">
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-cogs"></i> Connect to Jupyter
+  </button>
+</form>
+<br>
+<form action="/node/<%= host %>/<%= port %>/notebooks/Experiment_2/exp2_sim.ipynb" method="post" target="_blank">
+  <input type="hidden" name="password" value="<%= password %>">
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-cogs"></i> Connect to Experiment 2
+  </button>
+</form>
+

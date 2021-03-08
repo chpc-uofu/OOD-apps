@@ -1,0 +1,11 @@
+---
+batch_connect:
+  template: "basic"
+script:
+  <%- if /frisco/.match(cluster) == nil -%>
+  native:
+    - "-N"
+    - "1"
+    - "-n"
+    - "<%= num_cores %>"
+  <%- end -%>

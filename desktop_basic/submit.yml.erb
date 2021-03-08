@@ -1,0 +1,11 @@
+---
+batch_connect:
+  template: vnc
+script:
+  <%- if /frisco/.match(cluster) == nil -%>
+  native:
+    <%- if num_cores != "none" -%>
+    - "-n <%= num_cores %>"
+    <%- end -%>
+  <%- end -%>
+

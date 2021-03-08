@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Set working directory to home directory
+cd "${HOME}"
+
+# load the class Anaconda environment
+ml use /uufs/chpc.utah.edu/common/home/u0101881/MyModules
+ml miniconda3/dgoldenberg
+conda activate exp_2_sim
+# to export to PDF:
+# module load texlive/2019
+
+#
+# Start Jupyter Notebook Server
+#
+
+# Workaround for directory permission error
+#unset XDG_RUNTIME_DIR
+#export XDG_RUNTIME_DIR=""
+
+# List available kernels for debugging purposes
+#set -x
+jupyter kernelspec list
+{ set +x; } 2>/dev/null
+echo "TTT - $(date)"
+
+jupyter --paths
+
+#jupyter notebook --generate-config 
+# Launch the Jupyter Notebook Server
+# jupyter notebook --config="${CONFIG_FILE}" --debug
+# jupyter notebook --config="${CONFIG_FILE}" 
+jupyter notebook --config="${CONFIG_FILE}" /uufs/chpc.utah.edu/common/home/u0101881/software/pkg/miniconda3-dgoldenberg/app/Experiment_2/exp2_sim.ipynb
+#voila --config="${CONFIG_FILE}" /uufs/chpc.utah.edu/common/home/u0101881/software/pkg/miniconda3-dgoldenberg/app/exp2_sim.ipynb

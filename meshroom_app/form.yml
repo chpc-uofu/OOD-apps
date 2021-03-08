@@ -1,0 +1,28 @@
+---
+attributes:
+  cluster:
+    widget: "select"
+    options:
+      - "frisco1"
+      - "frisco2"
+      - "frisco3"
+      - "frisco4"
+      - "frisco5"
+      - "frisco6"
+      - "frisco7"
+      - "frisco8"
+    help: |
+      Select the cluster or Frisco node to create this session on.
+  bc_num_hours:
+    value: 1
+    min: 1
+    step: 1
+    help: "Length of the Frisco remote session"
+
+  bc_vnc_resolution:
+    required: true
+form:
+  - cluster
+  - bc_num_hours
+  - bc_email_on_started
+  - bc_vnc_resolution

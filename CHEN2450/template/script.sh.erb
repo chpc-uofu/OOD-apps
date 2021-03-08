@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Set working directory to home directory
+cd "${HOME}"
+
+# load the class Anaconda environment
+module load python/3.6.3 R/3.6.1
+# to export to PDF:
+module load texlive/2019
+
+#
+# Start Jupyter Notebook Server
+#
+
+# Workaround for directory permission error
+#unset XDG_RUNTIME_DIR
+#export XDG_RUNTIME_DIR=""
+
+# List available kernels for debugging purposes
+#set -x
+jupyter kernelspec list
+{ set +x; } 2>/dev/null
+echo "TTT - $(date)"
+
+jupyter --paths
+
+#jupyter notebook --generate-config 
+# Launch the Jupyter Notebook Server
+# jupyter notebook --config="${CONFIG_FILE}" --debug
+jupyter notebook --config="${CONFIG_FILE}" 

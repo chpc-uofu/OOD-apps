@@ -1,0 +1,14 @@
+---
+batch_connect:
+  template: vnc
+script:
+  <%- if /frisco/.match(cluster) == nil -%>
+  native:
+    - "-n"
+    - "<%= bc_num_slots %>"
+    <%- if memtask != "default" -%>
+    - "--mem"
+    - "<%= memtask %>"
+    <%- end -%>
+  <%- end -%>
+

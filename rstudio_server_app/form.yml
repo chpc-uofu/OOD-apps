@@ -1,0 +1,84 @@
+---
+title: "RStudio server"
+attributes:
+  cluster:
+    widget: "select"
+    options:
+      - "notchpeak"
+      - "kingspeak"
+      - "lonepeak"
+      - "ash"
+      - "tangent"
+      - "frisco1"
+      - "frisco2"
+      - "frisco3"
+      - "frisco4"
+      - "frisco5"
+      - "frisco6"
+      - "frisco7"
+      - "frisco8"
+    help: |
+      Select the cluster or Frisco node to create this session on.
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    help: "Maximum number of CPU cores on notchpeak-shared-short is 32, see [cluster help pages](https://www.chpc.utah.edu/resources/HPC_Clusters.php) for other cluster's node counts."
+    min: 1
+    max: 40
+  bc_num_hours:
+    label: "Number of hours"
+    value: 1   
+    min: 1
+    max: 336
+    help: "Maximum wall time on notchpeak-shared-short is 8 hours, general nodes 72 hours, owner nodes 14 days."
+  bc_account:
+    label: "Account"
+    value: "notchpeak-shared-short"
+  bc_queue:
+    label: "Partition"
+    value: "notchpeak-shared-short"
+  version:
+    widget: select
+    label: "R version"
+    help: "This defines the version of R you want to load. CHPC build denotes [CHPC installed R](https://www.chpc.utah.edu/documentation/software/r-language.php), as opposed to other versions that are obtained from [Rocker containers](https://www.rocker-project.org). The latter are better for more complex computing environments, e.g. bioinformatics and geospatial applications.<br>See output from '.libPaths()' function for the location of the user installed libraries."
+    options:
+      - [ "R 4.0.2 CHPC build", "4.0.2"]
+      - [ "R 4.0.2 Basic packages", "4.0.2-basic"]
+      - [ "R 4.0.3 Bioconductor packages", "4.0.3-bioconductor"]
+      - [ "R 4.0.3 Geospatial packages", "4.0.3-geospatial"]
+      - [ "R 3.6.2 Basic packages", "3.6.2-basic"]
+      - [ "R 3.6.2 Bioconductor packages", "3.6.2-bioconductor"]
+      - [ "R 3.6.2 Geospatial packages", "3.6.2-geospatial"]
+  memtask:
+    widget: "text_field"
+    value: "default"
+    label: "Memory per job"
+    help: |
+      - **default** - Use default, 4 GB per task.
+      - **512M** - Use 512 MB.
+      - **128G** - Use 128 GB, this is the maximum on notchpeak-shared-short.
+  gpu_type:
+    label: "GPU type:count"
+    help: |
+      - GPU type:
+          - **none** - No GPU
+          - **k80** - Tesla K80 GPU(s) (double precision)
+          - **1080ti** - GeForce 1080 Ti GPU(s) (single precision)
+          - **2080ti** - GeForce 2080 Ti GPU(s) (single precision)
+          - **titanv** - GeForce Titan V GPU(s) (single precision)
+          - **c40** - Tesla C40 GPU (single precision)
+          - **v100** - Tesla V100 GPU(s) (double precision)
+      - GPU count: 
+          - Specify count with :count after the GPU name (e.g. **v100:2**)
+    value: "none"
+form:
+  - cluster
+  - version
+  - num_cores
+  - bc_num_hours
+  - memtask
+  - bc_account
+  - bc_queue
+  - gpu_type
+  - bc_email_on_started

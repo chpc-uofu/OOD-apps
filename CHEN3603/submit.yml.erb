@@ -1,0 +1,14 @@
+batch_connect:
+  template: "basic"
+script:
+  native:
+  <%- if /frisco/.match(cluster) == nil -%>
+    - "-N"
+    - "1"
+    - "-n"
+    - 1
+    - "-A"
+    - "<%= my_account %>"
+    - "-p"
+    - "<%= my_queue %>"
+  <%- end -%>

@@ -1,0 +1,60 @@
+---
+title: "CHEN3603"
+attributes:
+  cluster: 
+    widget: "select"
+    options:
+      - "notchpeak"
+      - "kingspeak"
+      - "lonepeak"
+      - "ash"
+      - "tangent"
+      - "frisco1"
+      - "frisco2"
+      - "frisco3"
+      - "frisco4"
+      - "frisco5"
+      - "frisco6"
+      - "frisco7"
+      - "frisco8"
+    help: |
+      Select the cluster or Frisco node to create this session on.<br>If you select frisco please ignore all the entries below.
+  # Set the corresponding modules that need to be loaded for Jupyter to run
+  #
+  # @note It is called within the batch job as `module load <modules>` if
+  #   defined
+  # @example Do not load any modules
+  #     modules: ""
+  # @example Using default python module
+  #     modules: "python"
+  # @example Using specific python module
+  #     modules: "python/3.5"
+  # @example Using combination of modules
+  #     modules: "python/3.5 cuda/8.0.44"
+  #modules: "python/3.5.2 R/3.4.2"
+  custom_environment:
+    widget: text_area
+    label: Environment Setup (drag text area to enlarge)
+    help: "Enter commands (module load, source activate, etc) to create your desired jupyter notebook environment; jupyter MUST be on your path. For instructions how to install ypur own Python using Miniconda see https://www.chpc.utah.edu/documentation/software/python-anaconda.php. If you don't have one yet use 'module load python/3.6.3 R/3.6.1'"
+    value: |
+        module load python/3.6.3 R/3.6.1
+
+  bc_num_hours:
+    value: 1
+    min: 1
+    step: 1
+    help: "Maximum wall time on notchpeak-shared-short is 8 hours, general nodes 72 hours, owner nodes 14 days."
+  bc_account:
+    label: "Account"
+    value: "notchpeak-shared-short"
+  bc_queue:
+    label: "Partition"
+    value: "notchpeak-shared-short"
+
+form:
+  - cluster
+  - custom_environment
+  - bc_num_hours
+  - bc_account
+  - bc_queue
+  - bc_email_on_started
