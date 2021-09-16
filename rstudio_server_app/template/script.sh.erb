@@ -15,10 +15,14 @@ setup_env () {
   # SINGULARITY_BINDPATH is being used to bind all RStudio's requirements from
   # the host into the guest, and so those values may vary between sites.
 
-  <%- if context.version == "4.0.2" -%>
+  <%- if context.version == "4.0.2" or context.version == "4.1.1" -%>
     module load R/<%= context.version %>
     echo R version is <%= context.version %>
-    RSPATH="/uufs/chpc.utah.edu/sys/installdir/rstudio-server/1.3.959/bin/"
+    #RSPATH="/uufs/chpc.utah.edu/sys/installdir/rstudio-server/1.3.959/bin/"
+    # built from source 1.3 with R graphics 14 enabled, see README for details
+    RSPATH="/uufs/chpc.utah.edu/sys/installdir/rstudio-server/1.3.1093-chpc/bin/"
+    export LD_LIBRARY_PATH="/uufs/chpc.utah.edu/sys/installdir/boost/1.69.0-8.1.0g/lib:$LD_LIBRARY_PATH"
+    unset OMP_NUM_THREADS
   <%- else -%>
     module use /uufs/chpc.utah.edu/sys/installdir/rstudio-singularity/modulefiles
     module load singularity rstudio_singularity/<%= context.version %>
@@ -76,7 +80,7 @@ find ~/.rstudio/sessions/active/*/session-persistent-state -type f | xargs sed -
 echo "Starting up rserver..."
 
 set -x
-<%- if context.version == "4.0.2" -%>
+<%- if context.version == "4.0.2" or context.version == "4.1.1" -%>
   ${RSPATH}rserver \
     --www-port ${port} \
     --auth-none 0 \

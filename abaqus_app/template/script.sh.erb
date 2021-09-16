@@ -23,6 +23,25 @@ cd "${HOME}"
   xfce4-panel --sm-client-disable
 ) &
 
+set -x
+# Set appropriate license based on license_type checkbox
+<%- if context.license_type == "1" -%>
+  echo Using CoE teaching license
+  if ! grep -q "winlic" $HOME/abaqus_v6.env;  then
+    echo code if not found
+    cat /uufs/chpc.utah.edu/sys/installdir/abaqus/abaqus_v6_coe_teaching.env >> $HOME/abaqus_v6.env
+  fi
+<%- else -%>
+  echo Using research license
+  if [ -f $HOME/abaqus_v6.env ]; then
+    if grep -q "winlic" $HOME/abaqus_v6.env;  then
+      echo code if found, remove
+      sed -i '/winlic/d' $HOME/abaqus_v6.env
+      sed -i '/TEACHING/d' $HOME/abaqus_v6.env
+    fi
+  fi
+<%- end -%>
+
 #
 # Start COMSOL Multiphysics
 #
@@ -31,6 +50,7 @@ cd "${HOME}"
 module load intel <%= context.version %>
 
 # Launch COMSOL Multiphysics
+unset SLURM_GTIDS
 module list
 set -x
 abaqus cae -mesa \

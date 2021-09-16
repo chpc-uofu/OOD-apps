@@ -1,10 +1,12 @@
 # Batch Connect - OSC RStudio Server
 
+![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_rstudio_server.svg)
+[![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 An interactive app designed for OSC OnDemand that launches an RStudio Server
-within on CHPC infrastructure.
+within an Owens batch job.
 
-As of Mar21, RStudio Server >= 1.4 has made authentication changes that don't work with OOD. One has to pull the Docker containers that are still using RStudio Server 1.3.x. To use 1.3.x, there is also a small modification needed in ```template/bin/auth```.
+Modifications made for CHPC's notchpeak-shared partition.
 
 As of Mar20 we are using Docker containers from rocker and bioconductor:
 - base R image, based on [https://hub.docker.com/r/rocker/rstudio](https://hub.docker.com/r/rocker/rstudio)
@@ -51,7 +53,7 @@ OnDemand node):
 **without Singularity**
 
 - [R] 3.3.2+ (earlier versions are untested but may work for you)
-- [RStudio Server] above 1.0.136 and below 1.4 (1.4 added an extra authentication part which is hard to incorporate to Open OnDemand)
+- [RStudio Server] 1.0.136+ (earlier versions are untested by may work for you)
 - [PRoot] 5.1.0+ (used to setup fake bind mount)
 
 **or with Singularity**
@@ -71,6 +73,33 @@ OnDemand node):
 
 ## Install
 
-git clone and modify to your needs
+Use git to clone this app and checkout the desired branch/version you want to
+use:
 
-build the containers and create module files as in the included examples
+```sh
+scl enable git19 -- git clone <repo>
+cd <dir>
+scl enable git19 -- git checkout <tag/branch>
+```
+
+You will not need to do anything beyond this as all necessary assets are
+installed. You will also not need to restart this app as it isn't a Passenger
+app.
+
+To update the app you would:
+
+```sh
+cd <dir>
+scl enable git19 -- git fetch
+scl enable git19 -- git checkout <tag/branch>
+```
+
+Again, you do not need to restart the app as it isn't a Passenger app.
+
+## Contributing
+
+1. Fork it ( https://github.com/OSC/bc_osc_rstudio_server/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request

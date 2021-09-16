@@ -28,7 +28,7 @@ attributes:
     widget: "number_field"
     label: "Number of tasks (CPU cores)"
     value: 1
-    help: "Maximum number of CPU cores on notchpeak-shared-short is 32, see [cluster help pages](https://www.chpc.utah.edu/resources/HPC_Clusters.php) for other cluster's node counts."
+    help: "Maximum number of CPU cores on notchpeak-shared-short is 16, see [cluster help pages](https://www.chpc.utah.edu/resources/HPC_Clusters.php) for other cluster's node counts."
     min: 1
     max: 64
     step: 1

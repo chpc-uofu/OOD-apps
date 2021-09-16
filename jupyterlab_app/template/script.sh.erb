@@ -18,6 +18,9 @@ jupyter kernelspec list
 { set +x; } 2>/dev/null
 echo "TTT - $(date)"
 
+echo srun
+srun hostname -s
+
 #jupyter notebook --generate-config 
 # Launch the Jupyter Notebook Server
 # jupyter notebook --config="${CONFIG_FILE}" --debug

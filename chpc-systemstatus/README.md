@@ -24,6 +24,20 @@ Customized [OSC System Status app](https://github.com/OSC/osc-systemstatus).
 - split resources reporting to general and owner
 - added GPU counts
 - added GPU running jobs count
+- modified `app.rb` CLUSTERS to add preferred cluster ordering:
+```
+ CLUSTERS = OodCore::Clusters.new(OodCore::Clusters.load_file(ENV['OOD_CLUSTERS'] || '/etc/ood/config/clusters.d').select(&:job_allow?)
+   .select { |c| c.custom_config[:moab] || c.job_config[:adapter] == "slurm" }
+   .reject { |c| c.metadata.hidden }
+   .sort_by {|cluster| [cluster.metadata.priority.to_i, cluster.id]}
+ )
+```
+and then in `/etc/ood/config/clusters.d`, add
+```
+  metadata:
+    title: "Notchpeak"
+    priority: 1
+```
 
 ### Caveats
 
@@ -38,10 +52,6 @@ Customized [OSC System Status app](https://github.com/OSC/osc-systemstatus).
 
 
 ### Debugging notes to self
-
-- HTML rendering files are in view directory
-
-- variable grabbing files (executing SLURM commands) are in lib directory
 
 - after modifying the rb files, do ```touch tmp/restart.txt```
 

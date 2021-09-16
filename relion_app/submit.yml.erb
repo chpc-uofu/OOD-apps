@@ -1,0 +1,17 @@
+---
+batch_connect:
+  template: vnc
+script:
+  <%- if /frisco/.match(cluster) == nil -%>
+  native:
+    - "-n"
+    - "<%= bc_num_slots %>"
+    <%- if gpu_type != "none" -%>
+    - "--gres=gpu:<%= gpu_type %>"
+    <%- end -%>
+    <%- if memtask != "default" -%>
+    - "--mem"
+    - "<%= memtask %>"
+    <%- end -%>
+  <%- end -%>
+

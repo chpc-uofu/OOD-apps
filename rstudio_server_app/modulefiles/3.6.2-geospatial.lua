@@ -13,7 +13,7 @@ local host_mnt = ""
 
 local user_library = os.getenv("HOME") .. "/R/library-ood-rocker-3.6"
 
-depends_on("singularity")
+prereq("singularity")
 -- prepend_path("PATH", bin)
 prepend_path("RSTUDIO_SINGULARITY_BINDPATH", "/:" .. host_mnt, ",")
 prepend_path("RSTUDIO_SINGULARITY_BINDPATH", library .. ":/library", ",")
@@ -39,19 +39,3 @@ setenv("R_ENVIRON_USER",pathJoin(os.getenv("HOME"),".Renviron.OOD"))
 -- probably get away with just:
 --
 --   - SINGULARITY_BINDPATH=$(mktemp -d):/tmp,$SINGULARITY_BINDPATH
-
--- wrappers to execute the container in a non-OOD environment
-set_shell_function("Rshell",'singularity shell -s /bin/bash ' .. img,"singularity shell -s /bin/bash " .. img)
-set_shell_function("R",'singularity exec ' .. img .. ' R $@',"singularity exec " .. img .. " R $*")
-set_shell_function("Rscript",'singularity exec ' .. img .. ' Rscript $@',"singularity exec " .. img .. " Rscript $*")
--- to export the shell function to a subshell
-if (myShellName() == "bash") then
- execute{cmd="export -f Rshell",modeA={"load"}}
- execute{cmd="export -f R",modeA={"load"}}
- execute{cmd="export -f Rscript",modeA={"load"}}
-else -- tcsh needs to unalias, this does not seem to happen with the set_shell_function
- execute{cmd="unalias Rshell",modeA={"unload"}}
- execute{cmd="unalias R",modeA={"unload"}}
- execute{cmd="unalias Rscript",modeA={"unload"}}
-end
-

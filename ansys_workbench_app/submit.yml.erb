@@ -6,6 +6,8 @@ script:
   native:
     - "-n"
     - "<%= bc_num_slots %>"
+    - "-N"
+    - "<%= num_nodes %>"
     <%- if gpu_type != "none" -%>
     - "--gres=gpu:<%= gpu_type %>"
     <%- end -%>
