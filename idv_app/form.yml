@@ -39,6 +39,7 @@ attributes:
     options:
       - [ "5.2",   "idv/5.2"   ]
       - [ "5.7",   "idv/5.7"   ]
+      - [ "6.0u1", "idv/6.0u1" ]
   bc_account:
     label: "Account"
     value: "notchpeak-shared-short"
@@ -67,6 +68,9 @@ attributes:
       - GPU count: 
           - Specify count with :count after the GPU name (e.g. **v100:2**)
     value: "none"
+  bc_email_on_started:
+    help: "If you do not receive the email, check your [Profile](https://www.chpc.utah.edu/role/user/edit_profile.php) for correct address."
+
 form:
   - cluster
   - version

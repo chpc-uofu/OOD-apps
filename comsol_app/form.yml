@@ -53,6 +53,9 @@ attributes:
       - **default** - Use default, 4 GB per task.
       - **512M** - Use 512 MB.
       - **128G** - Use 128 GB, this is the maximum.
+  bc_email_on_started:
+    help: "If you do not receive the email, check your [Profile](https://www.chpc.utah.edu/role/user/edit_profile.php) for correct address."
+
 form:
   - cluster
   - version

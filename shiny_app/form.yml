@@ -44,6 +44,9 @@ attributes:
     help: "Enter the path to the Shiny app you want to run. App file in this directory has to be named either app.R or server.R."
     value: |
         ~/R/shiny/app
+  bc_email_on_started:
+    help: "If you do not receive the email, check your [Profile](https://www.chpc.utah.edu/role/user/edit_profile.php) for correct address."
+
 form:
   - cluster
   - shiny_app

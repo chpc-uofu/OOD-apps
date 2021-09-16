@@ -70,6 +70,9 @@ attributes:
       - GPU count: 
           - Specify count with :count after the GPU name (e.g. **v100:2**)
     value: "none"
+  bc_email_on_started:
+    help: "If you do not receive the email, check your [Profile](https://www.chpc.utah.edu/role/user/edit_profile.php) for correct address."
+
 form:
   - cluster
   - version

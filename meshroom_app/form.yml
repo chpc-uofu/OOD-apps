@@ -21,6 +21,9 @@ attributes:
 
   bc_vnc_resolution:
     required: true
+  bc_email_on_started:
+    help: "If you do not receive the email, check your [Profile](https://www.chpc.utah.edu/role/user/edit_profile.php) for correct address."
+
 form:
   - cluster
   - bc_num_hours
